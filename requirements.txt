@@ -1,0 +1,13 @@
+# AI Meeting Summarizer - Frontend
+
+## Requirements
+streamlit>=1.28.0
+python-dotenv>=1.0.0
+Pillow>=10.0.0
+pandas>=2.0.0
+numpy>=1.24.0
+
+# For future backend integration
+# requests>=2.31.0
+# openai-whisper>=20230918
+# google-generativeai>=0.3.0
