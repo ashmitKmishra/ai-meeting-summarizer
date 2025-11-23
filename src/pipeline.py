@@ -88,6 +88,21 @@ class MeetingPipeline:
             result = self.transcriber.transcribe(audio_path, fp16=False)
             transcript_text = result["text"]
             print("   -> Transcription complete.")
+
+            # --- SAVE TRANSCRIPT TO FILE ---
+            # 1. Create output folder if it doesn't exist
+            output_dir = "output"
+            os.makedirs(output_dir, exist_ok=True)
+
+            # 2. Generate filename: 'data/test.mp3' -> 'output/test_transcript.txt'
+            base_name = os.path.splitext(os.path.basename(audio_path))[0]
+            save_path = os.path.join(output_dir, f"{base_name}_transcript.txt")
+
+            # 3. Write to file
+            with open(save_path, "w", encoding="utf-8") as f:
+                f.write(transcript_text.strip())
+            print(f"   -> 💾 Saved transcript to: {save_path}")
+
         except Exception as e:
             return {"error": f"Whisper Transcription Failed: {str(e)}"}
 
